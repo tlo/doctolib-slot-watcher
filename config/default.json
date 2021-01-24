@@ -1,0 +1,11 @@
+{
+    "checkInterval" : 120,    // unit : seconds
+    "twilioAccountSid" : "ACXXXX",   // Account SID from www.twilio.com/console
+    "twilioAuthToken" : "XXXXXX",      // Auth Token from www.twilio.com/console
+    "twilioFromNumber" : "+1xxxx",      // Twilio "from" number to create on www.twilio.com/console
+    "toNumber" : "+33xxxx",      // Phone number to send alert SMS to
+    "doctolibUrls": [
+      "https://partners.doctolib.fr/booking/centre-de-vaccination-covid-hopital-prive-confluent.json",
+      "https://partners.doctolib.fr/availabilities.json?start_date=#DATE#&visit_motive_ids=2548392&agenda_ids=410714-410715-410716&insurance_sector=public&practice_ids=164268&limit=7&allowNewPatients=true&telehealth=false&profileId=242644&isOrganization=true&telehealthFeatureEnabled=false&vaccinationMotive=true&vaccinationDaysRange=26&vaccinationCenter=true"
+    ]
+}

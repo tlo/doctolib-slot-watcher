@@ -1,0 +1,28 @@
+{
+  "name": "doctolib-slot-watcher",
+  "version": "0.1.0",
+  "description": "Check for Doctolib slot availabilities and send SMS",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tlo/doctolib-slot-watcher"
+  },
+  "keywords": [
+    "doctolib",
+    "vaccination"
+  ],
+  "author": "Thierry Longis",
+  "license": "0BSD",
+  "bugs": {
+    "url": "https://github.com/tlo/doctolib-slot-watcher/issues"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "config": "^3.3.3",
+    "moment": "^2.29.1",
+    "twilio": "^3.55.0"
+  }
+}
