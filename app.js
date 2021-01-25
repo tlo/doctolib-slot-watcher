@@ -30,7 +30,7 @@ function checkForSlot() {
           var slotsAvailable = !responseData.agendas[0].booking_disabled;
         } else {
           // For URLs of type https://partners.doctolib.fr/availabilities.json...
-          var slotsAvailable = (response.data.availabilities.length > 0);
+          var slotsAvailable = (response.data.total > 0);
         }
         let logMessage = 'Centre ' + (i+1);
         if (centerName) { logMessage += ' (' + centerName + ')'; }

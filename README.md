@@ -15,6 +15,7 @@ https://www.doctolib.fr/centre-de-vaccinations-internationales/nantes/centre-de-
 * F12, Network, filtre sur XHR
 * Choisir le motif de consultation à droite
 * Obtenir l'appel effectué en https://partners.doctolib.fr/availabilities.json...
+* Dans l'URL obtenue, remplacer "?start_date=2021-XX-XX" par "?start_date=#DATE#"
 
 ## Lancement
 ```
