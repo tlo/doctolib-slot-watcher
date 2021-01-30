@@ -3,7 +3,7 @@ var axios     = require('axios');
 var moment    = require('moment');
 
 const twilioClient = require('twilio')(config.get('twilioAccountSid'), config.get('twilioAuthToken'));
-
+var lastAlertDate = null;
 
 checkForSlot();
 setInterval(function() {
@@ -30,7 +30,10 @@ function checkForSlot() {
           var slotsAvailable = !responseData.agendas[0].booking_disabled;
         } else {
           // For URLs of type https://partners.doctolib.fr/availabilities.json...
-          var slotsAvailable = (response.data.total > 0);
+          var slotsAvailable = (response.data.total > 0 || response.data.next_slot);
+          if (slotsAvailable) {
+            console.log(response.data);
+          }
         }
         let logMessage = 'Centre ' + (i+1);
         if (centerName) { logMessage += ' (' + centerName + ')'; }
@@ -38,18 +41,25 @@ function checkForSlot() {
         console.log(logMessage);
 
         if (slotsAvailable) {
-          // Send message
-          let promise = twilioClient.messages.create({
-            from: config.get('twilioFromNumber'),
-            to: config.get('toNumber'),
-            body: logMessage
-          })
-          .then(function(message) {
-            console.log('Message sent');
-          })
-          .catch((error) => {
-            console.error(error);
-          });
+          if (lastAlertDate == null || lastAlertDate < moment().subtract(120, 'seconds')) {
+            // Send message (every 120 seconds only to limit spamming in case of short polling time)
+
+            lastAlertDate = new moment();
+            let promise = twilioClient.messages.create({
+              from: config.get('twilioFromNumber'),
+              to: config.get('toNumber'),
+              body: logMessage
+            })
+            .then(function(message) {
+              console.log('SMS sent');
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+
+          } else {
+            console.log('No message sent');
+          }
         }
 
       })
